@@ -377,7 +377,7 @@ c--------plot value with height in the center of domain--------
       call set(0.1,0.9,0.1,0.9,0.,4.,1000.,10000.,1)
       call curved(plot_vv,z_height,nzmax)
       enddo
-      call axis(4,1,'variance (m:S:-2:N:s:S:-2:N:)',18,1,'Height (km)')
+      call axis(4,1,'variance (m:S:2:N:s:S:-2:N:)',18,1,'Height (km)')
       call frame
       call clsgks
 
