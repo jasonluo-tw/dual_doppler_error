@@ -158,7 +158,7 @@ cc     calculate variance of vr,w,vt, define scale height Hs
        vr_vari(1) = 1. ! radial v m/s
        vr_vari(2) = 1. ! radial vm/s
        vt_vari = 1.   ! terminal v m/s
-       w_vari = 16. !initial w_vari= 0. m/s
+       w_vari = 0. !initial w_vari= 0. m/s
        Hs = 9581.25 !scale height from Gray's inner 2deg composite
        delta_z=500. ! vertical grid spacing (meters)
        delta_x=1000. ! x grid spacing (meters)
@@ -289,7 +289,7 @@ c       nlevel=1000
         enddo
        enddo
 c      print *,'~~~~~'
-       where(plot_w.gt.20.)plot_w=dummy
+       where(plot_w.gt.100.)plot_w=dummy
 c       do i=1,nxmax
 c         write(15,*)(plot_w(i,j),j=1,nymax)
 c       enddo
@@ -299,60 +299,60 @@ c       enddo
        enddo
       call gsplci(16)
 c-------plot vertical velocity error---------------
-c      call contour(plot_w,nxmax,nymax,dummy,cont_index,32,1.5,ca7,16,4)
-c      call getset(fl,fr,fb,ft,ul,ur,ub,ut,ll)
-c      call set(f1,f2,f3,f4,u1,u2,u3,u4,l1)
-c      idx=int((east-west)/10.)
-c      idy=int((rnorth-south)/10.)
-c      call axis(idx,1,'X (km)',idy,1,'Y (km)')
-c      call set(0.,1.,0.,1.,0.,1.,0.,1.,1)
-c      write(dm_ti,'(i2)')int(domain)
-c      call plchhq(0.5,ft+0.04,'w error Domain '//trim(dm_ti),0.02,0.,0.)
-c      write(lv_ti,'(f4.1)')float(nlevel)*delta_z/2000.
-c      call plchhq(0.8,ft+0.04,'level'//trim(lv_ti)//'km',0.014,0.,0.)
-c      call frame
-c
-cc------plot u component error-----------------------
-c       do i=1,nxmax
-c        do j=1,nymax
-c         plot_u(i,j)=u_vari(i,j,nlevel)
-c        enddo
-c       enddo
-c      call set(f1,f2,f3,f4,u1,u2,u3,u4,l1)
-c      call contour(plot_u,nxmax,nymax,dummy,cont_index,32,1.5,ca7,16,4)
-c      call gsplci(16)
-c      call set(fl,fr,fb,ft,west,east,south,rnorth,l1)
-c      idx=int((east-west)/10.)
-c      idy=int((rnorth-south)/10.)
-c      call axis(idx,1,'X (km)',idy,1,'Y (km)')
-c      call set(0.,1.,0.,1.,0.,1.,0.,1.,1)
-c      write(dm_ti,'(i2)')int(domain)
-c      call plchhq(0.5,ft+0.04,'u error Domain '//trim(dm_ti),0.02,0.,0.)
-c      write(lv_ti,'(f4.1)')float(nlevel)*delta_z/2000.
-c      call plchhq(0.8,ft+0.04,'level'//trim(lv_ti)//'km',0.014,0.,0.)
-c      call frame
-c
-cc------plot v component error-----------------------
-c       do i=1,nxmax
-c        do j=1,nymax
-c         plot_v(i,j)=v_vari(i,j,nlevel)
-c        enddo
-c       enddo
-c      call set(f1,f2,f3,f4,u1,u2,u3,u4,l1)
-c      call contour(plot_v,nxmax,nymax,dummy,cont_index,32,1.5,ca7,16,4)
-c      call gsplci(16)
-c      call set(fl,fr,fb,ft,west,east,south,rnorth,ll)
-c      idx=int((east-west)/10.)
-c      idy=int((rnorth-south)/10.)
-c      call axis(idx,1,'X (km)',idy,1,'Y (km)')
-c      call set(0.,1.,0.,1.,0.,1.,0.,1.,1)
-c      write(dm_ti,'(i2)')int(domain)
-c      call plchhq(0.5,ft+0.04,'v error Domain '//trim(dm_ti),0.02,0.,0.)
-c      write(lv_ti,'(f4.1)')float(nlevel)*delta_z/2000.
-cc      print *,lv_ti
-c      call plchhq(0.8,ft+0.04,'level'//trim(lv_ti)//'km',0.014,0.,0.)
-c      call frame
-c
+      call contour(plot_w,nxmax,nymax,dummy,cont_index,32,1.5,ca7,16,4)
+      call getset(fl,fr,fb,ft,ul,ur,ub,ut,ll)
+      call set(f1,f2,f3,f4,u1,u2,u3,u4,l1)
+      idx=int((east-west)/10.)
+      idy=int((rnorth-south)/10.)
+      call axis(idx,1,'X (km)',idy,1,'Y (km)')
+      call set(0.,1.,0.,1.,0.,1.,0.,1.,1)
+      write(dm_ti,'(i2)')int(domain)
+      call plchhq(0.5,ft+0.04,'w error Domain '//trim(dm_ti),0.02,0.,0.)
+      write(lv_ti,'(f4.1)')float(nlevel)*delta_z/2000.
+      call plchhq(0.8,ft+0.04,'level'//trim(lv_ti)//'km',0.014,0.,0.)
+      call frame
+
+c------plot u component error-----------------------
+       do i=1,nxmax
+        do j=1,nymax
+         plot_u(i,j)=u_vari(i,j,nlevel)
+        enddo
+       enddo
+      call set(f1,f2,f3,f4,u1,u2,u3,u4,l1)
+      call contour(plot_u,nxmax,nymax,dummy,cont_index,32,1.5,ca7,16,4)
+      call gsplci(16)
+      call set(fl,fr,fb,ft,west,east,south,rnorth,l1)
+      idx=int((east-west)/10.)
+      idy=int((rnorth-south)/10.)
+      call axis(idx,1,'X (km)',idy,1,'Y (km)')
+      call set(0.,1.,0.,1.,0.,1.,0.,1.,1)
+      write(dm_ti,'(i2)')int(domain)
+      call plchhq(0.5,ft+0.04,'u error Domain '//trim(dm_ti),0.02,0.,0.)
+      write(lv_ti,'(f4.1)')float(nlevel)*delta_z/2000.
+      call plchhq(0.8,ft+0.04,'level'//trim(lv_ti)//'km',0.014,0.,0.)
+      call frame
+
+c------plot v component error-----------------------
+       do i=1,nxmax
+        do j=1,nymax
+         plot_v(i,j)=v_vari(i,j,nlevel)
+        enddo
+       enddo
+      call set(f1,f2,f3,f4,u1,u2,u3,u4,l1)
+      call contour(plot_v,nxmax,nymax,dummy,cont_index,32,1.5,ca7,16,4)
+      call gsplci(16)
+      call set(fl,fr,fb,ft,west,east,south,rnorth,ll)
+      idx=int((east-west)/10.)
+      idy=int((rnorth-south)/10.)
+      call axis(idx,1,'X (km)',idy,1,'Y (km)')
+      call set(0.,1.,0.,1.,0.,1.,0.,1.,1)
+      write(dm_ti,'(i2)')int(domain)
+      call plchhq(0.5,ft+0.04,'v error Domain '//trim(dm_ti),0.02,0.,0.)
+      write(lv_ti,'(f4.1)')float(nlevel)*delta_z/2000.
+c      print *,lv_ti
+      call plchhq(0.8,ft+0.04,'level'//trim(lv_ti)//'km',0.014,0.,0.)
+      call frame
+
 c--------plot value with height in the center of domain--------
       x_center=int((west+east)/2.)-west+1
       y_center=int((south+rnorth)/2.)-south+1
