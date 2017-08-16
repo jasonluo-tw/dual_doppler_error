@@ -299,6 +299,7 @@ c       enddo
        enddo
       call gsplci(16)
 c-------plot vertical velocity error---------------
+      call set(fl,fr,fb,ft,west,east,south,rnorth,l1)
       call contour(plot_w,nxmax,nymax,dummy,cont_index,32,1.5,ca7,16,4)
       call getset(fl,fr,fb,ft,ul,ur,ub,ut,ll)
       call set(f1,f2,f3,f4,u1,u2,u3,u4,l1)
